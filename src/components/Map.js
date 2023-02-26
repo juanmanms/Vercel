@@ -2,12 +2,22 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
+function getPosition() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+
+
+
+
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '98vw',
+  height: '95vh'
 };
 
 const center = {
+
   lat: -3.745,
   lng: -38.523
 };
@@ -21,11 +31,14 @@ function Map() {
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map)
+    const bounds = new window.google.maps.LatLngBounds();
+    setMap(map);
+    getPosition().then((position) => {
+      const { latitude, longitude } = position.coords;
+      const center = { lat: latitude, lng: longitude };
+      bounds.extend(center);
+      map.setCenter(center);
+    });
   }, [])
 
   const onUnmount = React.useCallback(function callback(map) {
