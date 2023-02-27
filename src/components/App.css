@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+.gmnoprint, .gm-control-active, .gm-fullscreen-control {
+  display: none;
+}
+.mapa {
+  width: 67%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* div listado de marcadores que sea un modal que ocupe 1/3 horizontal de la pantalla por encima del mapa y con un scroll vertical */
+.listado-store {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  z-index: 1;
+}
+.item-store {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.item-store:nth-child(odd) {
+  background-color: #eee;
+}
+.item-store:nth-child(even) {
+  background-color: grey;
+}
+.title-listado {
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.infowindow {
+  color: #000;
+}
