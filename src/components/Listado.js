@@ -19,6 +19,7 @@ function Listado(props) {
             <div className="item-store" key={Code}>
                 <h4>{Name}</h4>
                 <p>{City}</p>
+                <button className="boton" onClick={() => props.store({ Code, Name, Longitude, Latitude, Website, City })}>Ver en el mapa</button>
             </div>
             
             ))}
