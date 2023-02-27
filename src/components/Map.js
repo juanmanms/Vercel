@@ -118,9 +118,7 @@ function Map() {
             </GoogleMap>
             {currentZoom > 12 ? (
                 <Listado centro={centro} />
-            ) : (
-                <SearchBox />
-            )}
+            ) : <></>}
         </>
     ) : <></>
 }

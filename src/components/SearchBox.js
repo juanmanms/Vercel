@@ -9,8 +9,10 @@ function SearchBox(props) {
         <div className="search-box">
             <div className="search-box-content">
                 <input className="search-box-input" type="text" placeholder="Busqueda" />
-                <input className="boton" type="submit" value="Tienda" />
-                <input className="boton" type="submit" value="Lugar" />
+                <div className="search-box-button">
+                    <input className="boton" type="submit" value="Tienda" />
+                    <input className="boton" type="submit" value="Lugar" />
+                </div>
             </div>
         </div>
 
