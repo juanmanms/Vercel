@@ -7,6 +7,8 @@ import SearchBox from './SearchBox';
 
 
 
+
+
 function getPosition() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -71,6 +73,8 @@ function Map() {
     const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
     }, [])
+
+    const onPlacesChanged = () => console.log(this.searchBox.getPlaces());  
 
     return isLoaded ? (
         <>

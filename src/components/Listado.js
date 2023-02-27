@@ -14,7 +14,7 @@ function Listado(props) {
         //filtrado(latitud, longitud),
         <div className="listado-store">
         <h3 className="title-listado"> Tiendas más cercanas </h3>
-        <ul>
+        <ul className="listado">
             {filtrado(latitud, longitud).map(({ Code, Name, Longitude, Latitude, Website, City }) => (
             <div className="item-store" key={Code}>
                 <h4>{Name}</h4>

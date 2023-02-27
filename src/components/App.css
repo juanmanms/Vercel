@@ -59,13 +59,16 @@
   background-color: #fff;
   z-index: 1;
 }
+.listado {
+  padding: 0px;
+}
 .item-store {
   padding: 10px;
   border-bottom: 1px solid #ccc;
 }
 
 .item-store:nth-child(odd) {
-  background-color: #eee;
+  background-color: #9b9b9b;
 }
 .item-store:nth-child(even) {
   background-color: grey;
@@ -80,4 +83,45 @@
 
 .infowindow {
   color: #000;
+}
+
+/*modal de search box*/
+.search-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 15%;
+  background-color: #fff;
+  z-index: 1;
+  padding: 10px;
+  margin: 10px;
+}
+.search-box .search-box-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search-box .search-box-content .search-box-input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+}
+.search-box .search-box-content .search-box-input:focus {
+  outline: none;
+}
+.search-box .search-box-content .search-box-input::placeholder {
+  color: #ccc;
 }
