@@ -69,7 +69,7 @@ function SearchBox(props) {
     const handleChange = (e) => {
         setLugar(e.target.value);
     };
-    
+
     return (
         //hacer un modal que aparezca en la parte superior izquierda
         //que tenga un input
@@ -79,14 +79,17 @@ function SearchBox(props) {
             <div className="search-box-content">
                 {/* <Radio onOptionChange={onOptionChange} tipoBusqueda={tipoBusqueda} />
                 {tipoBusqueda === "Direcciones" ? <Lugares /> : <Tiendas />} */}
-                <input className="search-box-input" type="text" placeholder="Busqueda"  onChange={handleChange} />
-            <div className="search-box-button">
-                <button className="boton" onClick={() => props.lugar(lugar)}>Buscar</button>
+                <input className="search-box-input" type="text" placeholder="Busqueda" onChange={handleChange} />
+                <div className="search-box-button">
+                    <button className="boton" onClick={() => props.lugar(lugar)}>Buscar</button>
+                </div>
             </div>
-
-            </div>
-
-
+            {props.distance > 10 ? (
+                <div className="search-box-extra">
+                    <p className="extra-texto">Apreta de nuevo buscar si no aparece ningún punto en el mapa</p>
+                </div>
+            )
+                : <> </>}
         </div>
 
     );

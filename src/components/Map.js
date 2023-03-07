@@ -26,6 +26,7 @@ function Map() {
     const [currentZoom, setCurrentZoom] = React.useState(10);
     const [map, setMap] = React.useState(null)
     const [centro, setCentro] = React.useState([0, 0]);
+    const [distance, setDistance] = React.useState(0);
 
     function mostrarLugar(datos){
         //obtener center con geocoder
@@ -33,21 +34,18 @@ function Map() {
         geocoder.geocode({ address: datos }, (results, status) => {
             if (status === "OK") {
                 const center = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
-                console.log(center);
                 map.setCenter(center);
+                filtrado(map.getCenter())
+                if (distance > 10) {
+                    map.setZoom(3);
+                }
             }
         });
     }
 
     //funcion que active el marker con el codigo que le pases
     function handleStore(datos) {
-        //recorrer array de datos y los mostramos poe consola
-
-        //activar marker con el codigo que le pasamos
         listActiveMarker(datos);
-        //moverCenter(datos);
-
-
     }
 
     //funcion que active el marker con el codigo que le pases
@@ -57,6 +55,25 @@ function Map() {
         map.setCenter(center);
         setActiveMarker(marker);
         handleActiveMarker(marker);
+    }
+
+    //funcion que calcule la distancia de las tiendas más cercanas
+    function distancia() {
+        //obtener centro del mapa actual
+        const point = map.getCenter();
+        //obtener marker más cercano a center
+        var lista = [];
+        for (var i = 0; i < markers.length; i++) {
+            var distancia = Math.sqrt(Math.pow((point.lat() - markers[i].Latitude), 2) + Math.pow((point.lng() - markers[i].Longitude), 2));
+            lista.push({ distancia: distancia, Code: markers[i].Code, Name: markers[i].Name, Longitude: markers[i].Longitude, Latitude: markers[i].Latitude, City: markers[i].City });
+        }
+        lista.sort(function (a, b) {
+            return a.distancia - b.distancia;
+        }
+        );
+        console.log(lista[0]);
+        setDistance(lista[0].distancia);
+        
     }
 
 
@@ -78,9 +95,14 @@ function Map() {
     }
 
     function filtrado(center) {
-        if (Math.abs(center.lat() - centro[0]) > 0.005 || Math.abs(center.lng() - centro[1]) > 0.005) {
+        if (Math.abs(center.lat() - centro[0]) > 0.05 || Math.abs(center.lng() - centro[1]) > 0.05) {
             setCentro([center.lat(), center.lng()])
+        } else {
+            distancia();
         }
+            
+        //si distance es mayor de 10 cambiar el zoom
+        
     }
 
 
@@ -111,8 +133,8 @@ function Map() {
                 onLoad={onLoad}
                 onClick={() => handleActiveMarker(null)}
                 onUnmount={onUnmount}
-                onZoomChanged={handleZoomChanged}
-                onDragEnd={() => filtrado(map.getCenter())}
+                onZoomChanged={handleZoomChanged}  
+                onBoundsChanged={() => filtrado(map.getCenter())}
             >
                 <MarkerClusterer>
                     {(clusterer) =>
@@ -143,11 +165,10 @@ function Map() {
 
 
             </GoogleMap>
-            {currentZoom > 12 ? (
-                <Listado centro={centro} store={handleStore} />
-            ) : (
-                <SearchBox lugar={mostrarLugar}/>
-            )}
+            {currentZoom > 10 ? <Listado centro={centro} store={handleStore} /> :  <SearchBox lugar={mostrarLugar} distance={distance}/>}
+            
+            
+            
         </>
     ) : <></>
 }

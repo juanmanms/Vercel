@@ -89,7 +89,7 @@
 .search-box {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 15%;
   height: 15%;
   background-color: #fff;
@@ -145,4 +145,106 @@
   color: #000;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,400;0,500;0,700;0,800;1,300;1,400;1,500&display=swap');
 
+.search-box .search-box-content .search-box-input {
+    border-radius: 0;
+    height: auto;
+    padding: 6px;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+    text-transform: uppercase;
+}
+
+.search-box .search-box-content {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+}
+
+.search-box .search-box-content .search-box-button {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+
+.search-box .search-box-content .search-box-button button {
+    margin: 0;
+    border: 0;
+    padding: 7px 20px;
+    background: #000;
+    color: #fff;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+ul.listado {
+    counter-reset: section;
+}
+
+ul.listado .item-store {
+    position: relative;
+    background: #fff;
+    color: #333;
+    padding-left: 35px;
+}
+
+h3.title-listado {
+    font-size: 22px;
+    text-transform: uppercase;
+    background: transparent;
+    color: #000;
+    text-align: left;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+}
+
+ul.listado .item-store h4 {
+    text-align: left;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+ul.listado .item-store p {
+    text-align: left;
+    font-size: 14px;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+ul.listado .item-store button.boton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    border: 0;
+    box-shadow: none;
+    font-size: 0;
+}
+
+ul.listado .item-store button.boton:hover {
+    opacity: 0.2;
+}
+
+ul.listado .item-store:before {
+    counter-increment: section;
+    content: counter(section)'.';
+    font-size: 16px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.search-box {
+    height: 50px;
+}
+
+.search-box .search-box-content .search-box-button button:hover {
+    opacity: 0.75;
+}
