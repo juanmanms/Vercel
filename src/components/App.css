@@ -180,6 +180,13 @@
     font-size: 20px;
     cursor: pointer;
 }
+.search-box-extra {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15%;
+  background: white;
+  color: black;
+}
 
 ul.listado {
     counter-reset: section;
