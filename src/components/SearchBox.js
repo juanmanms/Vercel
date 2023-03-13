@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function SearchBox(props) {
     const [lugar, setLugar] = useState(null);
-    if (lugar === "BARCELONA") {
+    if (lugar === "barcelona" || lugar ==="BARCELONA" || lugar === "Barcelona" ) {
         setLugar("Barcelona, España");
     }
     const handleChange = (e) => {
